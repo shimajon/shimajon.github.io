@@ -2,7 +2,8 @@
     <head>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
+        <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
+        <!-- <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"> -->
         <style>
 #map{
     width: 100%;
@@ -75,7 +76,16 @@ window.addEventListener("load", function() {
         geojson.addTo(map);
     });
     //*/
+    $.getJSON("https://shimajun4957.github.io/data/r2kb17204.geojson", function(data) {
+        var geojson = L.geoJson(data, {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.name);
+            }
+        });
+        geojson.addTo(map);
+    });
     
+
 
 
 });
